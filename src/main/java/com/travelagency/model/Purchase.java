@@ -2,7 +2,7 @@ package com.travelagency.model;
 
 import java.time.LocalDate;
 
-public class Purchase extends Serialized{
+public class Purchase extends Serialized {
 
     private final Client client;
     private final CustomerServiceSpecialist customerServiceSpecialist;
@@ -18,6 +18,7 @@ public class Purchase extends Serialized{
         this.date = date;
         tour.getPurchaseList().add(this);
         registeredClient.getPurchaseList().add(this);
+        customerServiceSpecialist.getPurchaseList().add(this);
     }
 
     public Purchase(UnregisteredClient unregisteredClient, Tour tour, double price, LocalDate date) {

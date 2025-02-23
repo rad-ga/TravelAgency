@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Tour extends Serialized{
+public abstract class Tour extends Serialized {
     private String tourId;
     private double price;
     private TourType tourType;

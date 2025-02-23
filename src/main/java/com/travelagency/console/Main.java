@@ -26,11 +26,11 @@ public class Main {
         TourInfoCard domesticInfo2 = new TourInfoCard("Wycieczka w Tatry", "Dobra kondycja fizyczna", "Zabierz kurtkę i buty górskie");
         DomesticTour domesticTour2 = new DomesticTour("DT002", 800.0, TourType.ACTIVITY, 4.6, domesticInfo2, "Zakopane");
 
-        tas.getTours().add(abroadTour1);
-        tas.getTours().add(abroadTour2);
-        tas.getTours().add(domesticTour1);
+       /* tas.addTour(abroadTour1);
+        tas.addTour(abroadTour2);
+        tas.addTour(domesticTour1);
         tas.addTour(abroadTour3);
-        tas.addTour(domesticTour2);
+        tas.addTour(domesticTour2);*/
 
 
         // Klienci
@@ -45,12 +45,12 @@ public class Main {
         UnregisteredClient unregisteredClient2 = new UnregisteredClient("Kamil", "Kowalczyk", "k.kow@example.com", "888-777-666");
         UnregisteredClient unregisteredClient3 = new UnregisteredClient("Daria", "Grabowska", "daria.g@example.com", "777-666-555");
 
-        tas.addRegisteredClient(registeredClient1);
+        /*tas.addRegisteredClient(registeredClient1);
         tas.addRegisteredClient(registeredClient2);
         tas.addRegisteredClient(registeredClient3);
         tas.addRegisteredClient(registeredClient4);
         tas.addRegisteredClient(registeredClient5);
-        tas.addRegisteredClient(registeredClient6);
+        tas.addRegisteredClient(registeredClient6);*/
 
         //Pracownicy
         CustomerServiceSpecialist css1 = new CustomerServiceSpecialist("Marek", "Wiśniewski", "marek@example.com", "555-555-555", 160, EmploymentType.FULL_TIME_B2B);
@@ -58,10 +58,10 @@ public class Main {
         Manager manager1 = new Manager("Robert", "Krawczyk", "r.kra@example.com", "111-000-111", 160, EmploymentType.FULL_TIME_OTHER, 2000.0);
         CustomerServiceSpecialist css2 = new CustomerServiceSpecialist("Paweł", "Zieliński", "pawel@example.com", "222-333-444", 160, EmploymentType.FULL_TIME_B2B);
 
-        tas.addEmployee(guide1);
+        /*tas.addEmployee(guide1);
         tas.addEmployee(manager1);
         tas.getEmployees().add(css1);
-        tas.addEmployee(css2);
+        tas.addEmployee(css2);*/
 
         //Zakupy
         tas.buyTourRegisteredClient(registeredClient1, css1, abroadTour1, 5000);
@@ -96,15 +96,12 @@ public class Main {
         Client topClient = tas.getTopSpendingClient();
         System.out.println(topClient);
 
-        //ObjectOutputStream ooo = new ObjectOutputStream();
-
         // Zapis do pliku
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data.ser"))) {
             tas.saveSystemData(oos);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         // Odczyt z pliku (start nowej instancji serwisu z pliku)
         TravelAgencyService tas2 = new TravelAgencyService();
@@ -126,5 +123,11 @@ public class Main {
 
         System.out.println("\nPracownicy w tas2 (zaimportowani z pliku):");
         tas2.getEmployees().forEach(System.out::println);
+
+        System.out.println("\nWycieczki tas:");
+        tas.getTours().forEach(System.out::println);
+
+        System.out.println("\nWycieczki w tas2 (zaimportowani z pliku):");
+        tas2.getTours().forEach(System.out::println);
     }
 }

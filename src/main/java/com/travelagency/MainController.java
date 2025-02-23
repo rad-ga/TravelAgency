@@ -3,7 +3,6 @@ package com.travelagency;
 import com.travelagency.model.Employee;
 import com.travelagency.model.Tour;
 import com.travelagency.model.TravelAgencyService;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

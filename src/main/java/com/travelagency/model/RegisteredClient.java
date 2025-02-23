@@ -9,7 +9,6 @@ public class RegisteredClient extends Client {
     private final List<Purchase> purchaseList;
     private final List<Reservation> reservationList;
 
-
     public RegisteredClient(String name, String surname, String email, String phone, String clientId) {
         super(name, surname, email, phone);
         this.clientId = clientId;

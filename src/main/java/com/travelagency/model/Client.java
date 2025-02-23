@@ -2,9 +2,8 @@ package com.travelagency.model;
 
 import java.util.Objects;
 
-
-public abstract class Client extends Serialized{
-    private  String name;
+public abstract class Client extends Serialized {
+    private String name;
     private String surname;
     private String email;
     private String phone;

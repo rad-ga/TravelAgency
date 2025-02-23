@@ -17,14 +17,12 @@ public class TravelAgencyService {
 
     }
 
-    public static <T extends Serialized> List<T> getAll(Class<T> clazz) {
-        List<T> list = new ArrayList<>();
-        if (Serialized.database.containsKey(clazz)) {
-            for (Serialized<?> obj : Serialized.database.get(clazz)) {
-                list.add(clazz.cast(obj));
-            }
-        }
-        return list;
+    public static <T extends Serialized> List<T> getAll(Class<T> clazz){
+        return Serialized.database.values().stream()
+                .flatMap(List::stream)
+                .filter(clazz::isInstance)
+                .map(clazz::cast)
+                .collect(Collectors.toList());
     }
 
     public List<RegisteredClient> getRegisteredClients() {
@@ -89,14 +87,13 @@ public class TravelAgencyService {
         new Reservation(registeredClient, customerServiceSpecialist, tour, price, LocalDate.now());
     }
 
-    public void makeReservationUnregisteredClient(UnregisteredClient unregisteredClient, Tour tour, double price) {
-        new Reservation(unregisteredClient, tour, price, LocalDate.now());
-    }
-
     public void buyTourRegisteredClient(RegisteredClient registeredClient, CustomerServiceSpecialist customerServiceSpecialist, Tour tour, double price) {
         new Purchase(registeredClient, customerServiceSpecialist, tour, price, LocalDate.now());
     }
 
+    public void makeReservationUnregisteredClient(UnregisteredClient unregisteredClient, Tour tour, double price) {
+        new Reservation(unregisteredClient, tour, price, LocalDate.now());
+    }
 
     public List<Tour> searchForClientTours(Client client) {
         return getPurchases().stream()

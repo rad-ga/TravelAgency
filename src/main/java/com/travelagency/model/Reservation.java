@@ -17,6 +17,7 @@ public class Reservation extends Serialized {
         this.date = date;
         tour.getReservationsList().add(this);
         registeredClient.getReservationList().add(this);
+        customerServiceSpecialist.getReservationList().add(this);
     }
 
     public Reservation(UnregisteredClient unregisteredClient, Tour tour, double price, LocalDate date) {
